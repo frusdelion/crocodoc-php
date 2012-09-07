@@ -10,11 +10,11 @@ require_once 'CrocodocSession.php';
 // borrowed from Facebook's API :)
 // check for curl and json_decode
 if (!function_exists('curl_init')) {
-	Crocodoc::_error('requires_php_curl_extension', __CLASS__, __FUNCTION__, null);
+	throw new Exception('Crocodoc needs the CURL PHP extension.');
 }
 
 if (!function_exists('json_decode')) {
-	Crocodoc::_error('requires_php_json_extension', __CLASS__, __FUNCTION__, null);
+	throw new Exception('Crocodoc needs the JSON PHP extension.');
 }
 
 /**

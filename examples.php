@@ -3,8 +3,13 @@
  * Bootstrap
  */
 error_reporting(E_ALL);
-$exampleApiToken = '';
-header('Content-Type: text/plain');
+$exampleApiToken = 'YOUR_API_TOKEN';
+
+// set the content type to plaintext if we're running this from a web browser
+if (php_sapi_name() != 'cli') {
+	header('Content-Type: text/plain');
+}
+
 require_once 'Crocodoc.php';
 Crocodoc::setApiToken($exampleApiToken);
 
@@ -201,7 +206,7 @@ echo '  Downloading... ';
 
 try {
 	$file = CrocodocDownload::document($uuid2);
-	$filename = dirname(__FILE__) . '/downloads/test.doc';
+	$filename = dirname(__FILE__) . '/example-files/test.doc';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
@@ -223,7 +228,7 @@ echo '  Downloading... ';
 
 try {
 	$file = CrocodocDownload::document($uuid2, true);
-	$filename = dirname(__FILE__) . '/downloads/test.pdf';
+	$filename = dirname(__FILE__) . '/example-files/test.pdf';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
@@ -245,7 +250,7 @@ echo '  Downloading... ';
 
 try {
 	$file = CrocodocDownload::document($uuid2, true, true, 'all');
-	$filename = dirname(__FILE__) . '/downloads/test-with-options.pdf';
+	$filename = dirname(__FILE__) . '/example-files/test-with-options.pdf';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
@@ -267,7 +272,7 @@ echo '  Downloading... ';
 
 try {
 	$file = CrocodocDownload::thumbnail($uuid2);
-	$filename = dirname(__FILE__) . '/downloads/thumbnail.png';
+	$filename = dirname(__FILE__) . '/example-files/thumbnail.png';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
@@ -289,7 +294,7 @@ echo '  Downloading... ';
 
 try {
 	$file = CrocodocDownload::thumbnail($uuid2, 250, 250);
-	$filename = dirname(__FILE__) . '/downloads/thumbnail-large.png';
+	$filename = dirname(__FILE__) . '/example-files/thumbnail-large.png';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
@@ -311,7 +316,7 @@ echo '  Downloading... ';
 
 try {
 	$file = CrocodocDownload::text($uuid2);
-	$filename = dirname(__FILE__) . '/downloads/text.txt';
+	$filename = dirname(__FILE__) . '/example-files/text.txt';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
