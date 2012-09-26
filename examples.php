@@ -206,7 +206,7 @@ echo '  Downloading... ';
 
 try {
 	$file = CrocodocDownload::document($uuid2);
-	$filename = dirname(__FILE__) . '/example-files/test.doc';
+	$filename = dirname(__FILE__) . '/example-files/test.pdf';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
