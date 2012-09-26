@@ -21,8 +21,8 @@ class CrocodocSession extends Crocodoc {
 	 * downloadable, can be copy-protected, and can prevent changes from being
 	 * persisted.
 	 * 
-	 * $param string $uuid The uuid of the file to create a session for
-	 * $param array $params An associative array representing:
+	 * @param string $uuid The uuid of the file to create a session for
+	 * @param array $params An associative array representing:
 	 *   bool 'isEditable' Can users create annotations and comments while
 	 *     viewing the document with this session key?
 	 *   array 'userInfo' An array with keys "id" and "name" representing
