@@ -54,16 +54,6 @@ class CrocodocSession extends Crocodoc {
 					return static::_error('missing_user_id', __CLASS__, __FUNCTION__, null);
 				}
 				
-				if (
-					!is_int($params['userInfo']['id'])
-					|| $params['userInfo']['id'] <= 0
-					|| $params['userInfo']['id'] >= 2147483647
-				) {
-					return static::_error('invalid_user_id', __CLASS__, __FUNCTION__, array(
-						'user_id' => $params['userInfo']['id'],
-					));
-				}
-				
 				if (empty($params['userInfo']['name'])) {
 					return static::_error('missing_user_name', __CLASS__, __FUNCTION__, null);
 				}
@@ -99,7 +89,6 @@ class CrocodocSession extends Crocodoc {
 		$session = static::_request('create', null, $postParams);
 		
 		if (!is_array($session) || empty($session['session'])) {
-			var_dump($session);
 			return static::_error('missing_session_key', __CLASS__, __FUNCTION__, $session);
 		}
 		
