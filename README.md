@@ -74,7 +74,7 @@ These methods allow you to upload, check the status of, and delete documents.
 
 https://crocodoc.com/docs/api/#doc-upload  
 To upload a document, use CrocodocDocument::upload().
-Pass  in a url (as a string) or a file resource object.
+Pass in a url (as a string) or a file resource object.
 This function returns a UUID of the file.
 
 	// with a url
@@ -87,12 +87,16 @@ This function returns a UUID of the file.
 #### Status
 
 https://crocodoc.com/docs/api/#doc-status  
-To check the status of a document, use CrocodocDocument::status().
-Pass in the UUID of the file you want to check the status of.
+To check the status of one or more documents, use CrocodocDocument::status().
+Pass in the UUID of the file or an array of UUIDS you want to check the status of.
 This function returns an associative array containing a "status" string" and a "viewable" boolean.
+If you passed in an array instead of a string, this function returns an array of associative arrays containing the status for each file.
 
     // $status contains $status['status'] and $status['viewable']
     $status = CrocodocDocument::status($uuid);
+    
+    // $statuses contains an array of $status associative arrays
+    $statuses = CrocodocDocument::status(array($uuid, $uuid2));
     
 #### Delete
 
@@ -157,15 +161,30 @@ The session method allows you to create a session for viewing documents in a sec
 #### Create
 
 https://crocodoc.com/docs/api/#session-create  
-To get a session key, use CrocodocSession.create().
+To get a session key, use CrocodocSession::create().
 Pass in the uuid and optionally a params associative array.
 The params array can contain an "isEditable" boolean,
 a "userInfo" associative array with "id" and "name" fields,
 and booleans for "isAdmin", "isDownloadable", "isCopyprotected", and "isDemo".
 This function returns a session key.
 
+	// without optional params
     $sessionKey = CrocodocSession::create($uuid);
     
+    // with optional params
+	$sessionKey = CrocodocSession::create($uuid, array(
+		'isEditable' => true,
+		'user' => array(
+			'id' => 1,
+			'name' => 'John Crocodile',
+		),
+		'filter' => 'all',
+		'isAdmin' => true,
+		'isDownloadable' => true,
+		'isCopyprotected' => false,
+		'isDemo' => false,
+	));
+	
 ## Support
 
 Please use github's issue tracker for API library support.
