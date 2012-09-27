@@ -91,7 +91,7 @@ class Crocodoc {
 		}
 		
 		$message .= $response;
-		throw new CrocodocException($message, $error);
+		throw new CrocodocException($message);
 	}
 	
 	/**
