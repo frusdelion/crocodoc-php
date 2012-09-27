@@ -33,7 +33,7 @@ class CrocodocDownload extends Crocodoc {
 		$getParams = array(
 			'uuid' => $uuid,
 		);
-		if ($isPdf) $getParams['pdf'] = 'true';
+		if ($isPdf) $getParams['pdf'] = 1;
 
 		if ($isAnnotated) {
 			$getParams['annotated'] = 1;
