@@ -13,13 +13,13 @@ First, get the library.
 Navigate into the folder you want to keep the library in.
 We suggest adding the library as a submodule in your git project.
 
-    git submodule add git://github.com/crocodoc/crocodoc-php.git
+    git submodule add git@github.com:crocodoc/crocodoc-php.git
 
 You can also get the library by cloning or downloading.
 
 To clone:
 
-    git clone git://github.com/crocodoc/crocodoc-php.git
+    git clone git@github.com:crocodoc/crocodoc-php.git
     
 To download:
 
