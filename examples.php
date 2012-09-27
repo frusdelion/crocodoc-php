@@ -27,7 +27,7 @@ try {
 	$uuid = CrocodocDocument::upload($formW4Url);
 	echo 'success :)' . "\n";
 	echo '  UUID is ' . $uuid . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -54,7 +54,7 @@ try {
 		echo 'failed :(' . "\n";
 		echo '  Error Message: ' . $status['error'] . "\n";
 	}
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -78,7 +78,7 @@ if (is_file($filePath)) {
 		$uuid2 = CrocodocDocument::upload($fileHandle);
 		echo 'success :)' . "\n";
 		echo '  UUID is ' . $uuid2 . "\n";
-	} catch (CrocodocClientException $e) {
+	} catch (CrocodocException $e) {
 		echo 'failed :(' . "\n";
 		echo '  Error Code: ' . $e->getCode() . "\n";
 		echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -121,7 +121,7 @@ try {
 		echo 'failed :(' . "\n";
 		echo '  Statuses were not returned.' . "\n";
 	}
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -164,7 +164,7 @@ try {
 		echo 'failed :(' . "\n";
 		echo '  Statuses were not returned.' . "\n";
 	}
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -189,7 +189,7 @@ try {
 		echo 'failed :(' . "\n";
 		echo '  Error Message: ' . $status['error'] . "\n";
 	}
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -211,7 +211,7 @@ try {
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -233,7 +233,7 @@ try {
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -255,7 +255,7 @@ try {
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -277,7 +277,7 @@ try {
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -299,7 +299,7 @@ try {
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -321,7 +321,7 @@ try {
 	fwrite($fileHandle, $file);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -342,7 +342,7 @@ try {
 	$sessionKey = CrocodocSession::create($uuid2);
 	echo 'success :)' . "\n";
 	echo '  The session key is ' . $sessionKey . '.' . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -374,7 +374,7 @@ try {
 	));
 	echo 'success :)' . "\n";
 	echo '  The session key is ' . $sessionKey . '.' . "\n";
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
@@ -399,7 +399,7 @@ try {
 		echo 'failed :(' . "\n";
 		echo '  Error Message: ' . $status['error'] . "\n";
 	}
-} catch (CrocodocClientException $e) {
+} catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
 	echo '  Error Code: ' . $e->getCode() . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";

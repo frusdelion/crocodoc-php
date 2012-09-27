@@ -27,7 +27,7 @@ class CrocodocDownload extends Crocodoc {
 	 *   comma-separated list of user IDs as the filter
 	 * 
 	 * @return string The downloaded file contents as a string
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	public static function document($uuid, $isPdf = false, $isAnnotated = false, $filter = null) {
 		$getParams = array(
@@ -53,7 +53,7 @@ class CrocodocDownload extends Crocodoc {
 	 * @param string $uuid The uuid of the file to extract text from
 	 * 
 	 * @return string The file's extracted text
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	public static function text($uuid) {
 		$getParams = array(
@@ -71,7 +71,7 @@ class CrocodocDownload extends Crocodoc {
 	 *   height fields
 	 * 
 	 * @return string The downloaded thumbnail contents
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	public static function thumbnail($uuid, $width = null, $height = null) {
 		$getParams = array(

@@ -39,7 +39,7 @@ class CrocodocSession extends Crocodoc {
 	 *   bool 'isDemo' Should we prevent any changes from being persisted?
 	 * 
 	 * @return string A unique session key for the document
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	public static function create($uuid, $params = array()) {
 		$postParams = array(

@@ -19,7 +19,7 @@ class CrocodocDocument extends Crocodoc {
 	 * @param string $uuid The uuid of the file to delete
 	 * 
 	 * @return bool Was the file deleted?
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	public static function delete($uuid) {
 		$postParams = array(
@@ -39,7 +39,7 @@ class CrocodocDocument extends Crocodoc {
 	 * 
 	 * @return array An array of the uuid, status, and viewable bool, or an
 	 *   array of the uuid and an error
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	public static function status($uuids) {
 		$isSingleUuid = is_string($uuids);
@@ -66,7 +66,7 @@ class CrocodocDocument extends Crocodoc {
 	 * @param mixed $urlOrFile The url of the file to upload or a file resource
 	 * 
 	 * @return string The uuid of the newly-uploaded file
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	public static function upload($urlOrFile) {
 		$postParams = array();

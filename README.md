@@ -34,7 +34,8 @@ Require the library into any of your PHP files:
 ## Getting Started
 
 You can see a number of examples on how to use this library in examples.php.
-These examples are interactive and you can run this file to see crocodoc-php in action.  
+These examples are interactive and you can run this file to see crocodoc-php in action.
+
 To run these examples, open up examples.php and change this line to show your API token:
 
     $exampleApiToken = 'YOUR_API_TOKEN';
@@ -49,9 +50,6 @@ You can inspect the examples.php code to see each API call being used.
 To start using crocodoc-php in your code, instantiate the Crocodoc API library:
 
     Crocodoc::setApiToken('YOUR_API_TOKEN');
-    
-Note that any Crocodoc API call can return an exception.
-When making API calls, put them in a try/catch block.
 
 Read on to find out more how to use crocodoc-php.
 You can also find more detailed information about our API here:
@@ -59,8 +57,14 @@ https://crocodoc.com/docs/api/
 
 ## Using the Crocodoc API Library
 
-Since any Crocodoc API call can return an exception,
-these examples assume you are wrapping the code in a try/catch block.
+### Errors
+
+Errors are handled by throwing exceptions.
+We throw instances of CrocodocException.
+
+Note that any Crocodoc API call can throw an exception.
+When making API calls, put them in a try/catch block.
+You can see examples.php to see working code for each method using try/catch blocks.
 
 ### Document
 

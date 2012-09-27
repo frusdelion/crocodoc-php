@@ -81,7 +81,7 @@ class Crocodoc {
 	 * @param array $response This is an array of the response, usually from JSON, but
 	 *   can also be a string
 	 * 
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	protected static function _error($error, $client, $method, $response) {
 		$message = __CLASS__ . ': [' . $error . '] ' . $client . '::' . $method . "\r\n\r\n";
@@ -91,7 +91,7 @@ class Crocodoc {
 		}
 		
 		$message .= $response;
-		throw new CrocodocClientException($message);
+		throw new CrocodocException($message, $error);
 	}
 	
 	/**
@@ -111,7 +111,7 @@ class Crocodoc {
 	 * 
 	 * @return array The response array is usually converted from JSON, but
 	 *   sometimes we just return the raw response from the server
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	protected static function _request($method, $getParams, $postParams, $isJson = true) {
 		$ch = curl_init();
