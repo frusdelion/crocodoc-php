@@ -27,14 +27,14 @@ To download:
     unzip crocodoc-php.zip
     mv crocodoc-crocodoc-php-* crocodoc-php
 
-Require the script into any of your PHP scripts:
+Require the library into any of your PHP files:
 
 	require_once /path/to/crocodoc-php/Crocodoc.php
 	
 ## Getting Started
 
 You can see a number of examples on how to use this library in examples.php.
-These examples are interactive and you can run this file to see crocodoc-php in action.
+These examples are interactive and you can run this file to see crocodoc-php in action.  
 To run these examples, open up examples.php and change this line to show your API token:
 
     $exampleApiToken = 'YOUR_API_TOKEN';
@@ -68,7 +68,7 @@ These methods allow you to upload, check the status of, and delete documents.
 
 #### Upload
 
-https://crocodoc.com/docs/api/#doc-upload
+https://crocodoc.com/docs/api/#doc-upload  
 To upload a document, use CrocodocDocument::upload().
 Pass  in a url (as a string) or a file resource object.
 This function returns a UUID of the file.
@@ -82,7 +82,7 @@ This function returns a UUID of the file.
     
 #### Status
 
-https://crocodoc.com/docs/api/#doc-status
+https://crocodoc.com/docs/api/#doc-status  
 To check the status of a document, use CrocodocDocument::status().
 Pass in the UUID of the file you want to check the status of.
 This function returns an associative array containing a "status" string" and a "viewable" boolean.
@@ -92,7 +92,7 @@ This function returns an associative array containing a "status" string" and a "
     
 #### Delete
 
-https://crocodoc.com/docs/api/#doc-delete
+https://crocodoc.com/docs/api/#doc-delete  
 To delete a document, use CrocodocDocument::delete().
 Pass in the UUID of the file you want to delete.
 This function returns a boolean of whether the document was successfully deleted or not.
@@ -106,7 +106,7 @@ You can download originals, PDFs, extracted text, and thumbnails.
 
 #### Document
 
-https://crocodoc.com/docs/api/#dl-doc
+https://crocodoc.com/docs/api/#dl-doc  
 To download a document, use CrocodocDownload::document().
 Pass in the uuid,
 an optional boolean of whether or not the file should be downloaded as a PDF,
@@ -124,7 +124,7 @@ This function returns the file contents as a string, which you probably want to 
     
 #### Thumbnail
 
-https://crocodoc.com/docs/api/#dl-thumb
+https://crocodoc.com/docs/api/#dl-thumb  
 To download a thumbnail, use CrocodocDownload::thumbnail().
 Pass in the uuid and optionally the width and height.
 This function returns the file contents as a string, which you probably want to save to a file.
@@ -139,7 +139,7 @@ This function returns the file contents as a string, which you probably want to 
 
 #### Text
 
-https://crocodoc.com/docs/api/#dl-text
+https://crocodoc.com/docs/api/#dl-text  
 To download extracted text from a document, use CrocodocDownload::text().
 Pass in the uuid.
 This function returns the extracted text as a string.
@@ -152,7 +152,7 @@ The session method allows you to create a session for viewing documents in a sec
 
 #### Create
 
-https://crocodoc.com/docs/api/#session-create
+https://crocodoc.com/docs/api/#session-create  
 To get a session key, use CrocodocSession.create().
 Pass in the uuid and optionally a params associative array.
 The params array can contain an "isEditable" boolean,
