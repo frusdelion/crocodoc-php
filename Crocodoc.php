@@ -74,14 +74,14 @@ class Crocodoc {
 	/**
 	 * Handle an error. We handle errors by throwing an exception.
 	 * 
-	 * $param string $error An error code representing the error
+	 * @param string $error An error code representing the error
 	 *   (use_underscore_separators)
-	 * $param string $client Which API client the error is being called from
-	 * $param string $method Which method the error is being called from
-	 * $param array $response This is an array of the response, usually from JSON, but
+	 * @param string $client Which API client the error is being called from
+	 * @param string $method Which method the error is being called from
+	 * @param array $response This is an array of the response, usually from JSON, but
 	 *   can also be a string
 	 * 
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	protected static function _error($error, $client, $method, $response) {
 		$message = __CLASS__ . ': [' . $error . '] ' . $client . '::' . $method . "\r\n\r\n";
@@ -91,27 +91,27 @@ class Crocodoc {
 		}
 		
 		$message .= $response;
-		throw new CrocodocClientException($message);
+		throw new CrocodocException($message);
 	}
 	
 	/**
 	 * Make an HTTP request. Some of the params are polymorphic - getParams and
 	 * postParams. 
 	 * 
-	 * $param string $path The path on the server to make the request to
+	 * @param string $path The path on the server to make the request to
 	 *   relative to the base path
-	 * $param string $method This is just an addition to the path, for example,
+	 * @param string $method This is just an addition to the path, for example,
 	 *   in "/documents/upload" the method would be "upload"
-	 * $param array $getParams An array of GET params to be added to the URL -
+	 * @param array $getParams An array of GET params to be added to the URL -
 	 *   this can also be a string
-	 * $param array $postParams An array of GET params to be added to the URL -
+	 * @param array $postParams An array of GET params to be added to the URL -
 	 *   this can also be a string
-	 * $param bool isJson Should the file be converted from JSON? Defaults to
+	 * @param bool isJson Should the file be converted from JSON? Defaults to
 	 *   true.
 	 * 
 	 * @return array The response array is usually converted from JSON, but
 	 *   sometimes we just return the raw response from the server
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	protected static function _request($method, $getParams, $postParams, $isJson = true) {
 		$ch = curl_init();
@@ -248,7 +248,7 @@ class Crocodoc {
 	/**
 	 * Set the API token
 	 * 
-	 * $param string $apiToken The API token
+	 * @param string $apiToken The API token
 	 */
 	public static function setApiToken($apiToken) {
 		static::$apiToken = $apiToken;

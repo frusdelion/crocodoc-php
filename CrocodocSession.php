@@ -21,8 +21,8 @@ class CrocodocSession extends Crocodoc {
 	 * downloadable, can be copy-protected, and can prevent changes from being
 	 * persisted.
 	 * 
-	 * $param string $uuid The uuid of the file to create a session for
-	 * $param array $params An associative array representing:
+	 * @param string $uuid The uuid of the file to create a session for
+	 * @param array $params An associative array representing:
 	 *   bool 'isEditable' Can users create annotations and comments while
 	 *     viewing the document with this session key?
 	 *   array 'userInfo' An array with keys "id" and "name" representing
@@ -39,7 +39,7 @@ class CrocodocSession extends Crocodoc {
 	 *   bool 'isDemo' Should we prevent any changes from being persisted?
 	 * 
 	 * @return string A unique session key for the document
-	 * @throws CrocodocClientException
+	 * @throws CrocodocException
 	 */
 	public static function create($uuid, $params = array()) {
 		$postParams = array(
@@ -52,16 +52,6 @@ class CrocodocSession extends Crocodoc {
 			if ($params['isEditable'] && !empty($params['userInfo']) && is_array($params['userInfo'])) {
 				if (empty($params['userInfo']['id'])) {
 					return static::_error('missing_user_id', __CLASS__, __FUNCTION__, null);
-				}
-				
-				if (
-					!is_int($params['userInfo']['id'])
-					|| $params['userInfo']['id'] <= 0
-					|| $params['userInfo']['id'] >= 2147483647
-				) {
-					return static::_error('invalid_user_id', __CLASS__, __FUNCTION__, array(
-						'user_id' => $params['userInfo']['id'],
-					));
 				}
 				
 				if (empty($params['userInfo']['name'])) {
@@ -99,7 +89,6 @@ class CrocodocSession extends Crocodoc {
 		$session = static::_request('create', null, $postParams);
 		
 		if (!is_array($session) || empty($session['session'])) {
-			var_dump($session);
 			return static::_error('missing_session_key', __CLASS__, __FUNCTION__, $session);
 		}
 		
