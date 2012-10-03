@@ -91,7 +91,9 @@ class Crocodoc {
 		}
 		
 		$message .= $response;
-		throw new CrocodocException($message);
+		$exception = new CrocodocException($message);
+		$exception->errorCode = $error;
+		throw $exception;
 	}
 	
 	/**
@@ -181,6 +183,27 @@ class Crocodoc {
 		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 		
+		if ($isJson) {
+			$jsonDecoded = @json_decode($result, true);
+	
+			if ($jsonDecoded === false || $jsonDecoded === null) {
+				return static::_error('server_response_not_valid_json', __CLASS__, __FUNCTION__, array(
+					'response' => $result,
+					'getParams' => $getParams,
+					'postParams' => $postParams,
+				));
+			}
+			
+			if (is_array($jsonDecoded) && !empty($jsonDecoded['error'])) {
+				return static::_error($jsonDecoded['error'], __CLASS__, __FUNCTION__, array(
+					'getParams' => $getParams,
+					'postParams' => $postParams,
+				));
+			}
+			
+			$result = $jsonDecoded;
+		}
+		
 		$http4xxErrorCodes = array(
 			400 => 'bad_request',
 			401 => 'unauthorized',
@@ -206,34 +229,7 @@ class Crocodoc {
 			));
 		}
 		
-		if (!$isJson) {
-			$errorPrefix = '{"error":';
-
-			// make sure it isn't an error before returning the raw response
-			if (substr($result, 0, strlen($errorPrefix)) != $errorPrefix) {
-				return $result;
-			}
-		}
-		
-		$jsonDecoded = @json_decode($result, true);
-
-		if ($jsonDecoded === false || $jsonDecoded === null) {
-			return static::_error('server_response_not_valid_json', __CLASS__, __FUNCTION__, array(
-				'response' => $result,
-				'getParams' => $getParams,
-				'postParams' => $postParams,
-			));
-		}
-		
-		if (is_array($jsonDecoded) && !empty($jsonDecoded['error'])) {
-			return static::_error('server_error', __CLASS__, __FUNCTION__, array(
-				'error' => $jsonDecoded['error'],
-				'getParams' => $getParams,
-				'postParams' => $postParams,
-			));
-		}
-		
-		return $jsonDecoded;
+		return $result;
 	}
 	
 	/**
