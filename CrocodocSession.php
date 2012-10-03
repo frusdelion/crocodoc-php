@@ -25,7 +25,7 @@ class CrocodocSession extends Crocodoc {
 	 * @param array $params An associative array representing:
 	 *   bool 'isEditable' Can users create annotations and comments while
 	 *     viewing the document with this session key?
-	 *   array 'userInfo' An array with keys "id" and "name" representing
+	 *   array 'user' An array with keys "id" and "name" representing
 	 *     a user's unique ID and name in your application; "id" must be a
 	 *     non-negative signed 32-bit integer; this field is required if
 	 *     isEditable is true
@@ -47,19 +47,16 @@ class CrocodocSession extends Crocodoc {
 		);
 		
 		if (isset($params['isEditable'])) {
-			$postParams['editable'] = $params['isEditable'] ? 1 : 0;
-			
-			if ($params['isEditable'] && !empty($params['userInfo']) && is_array($params['userInfo'])) {
-				if (empty($params['userInfo']['id'])) {
-					return static::_error('missing_user_id', __CLASS__, __FUNCTION__, null);
-				}
-				
-				if (empty($params['userInfo']['name'])) {
-					return static::_error('missing_user_name', __CLASS__, __FUNCTION__, null);
-				}
-				
-				$postParams['user'] = $params['userInfo']['id'] . ',' . $params['userInfo']['name'];
-			}
+			$postParams['editable'] = $params['isEditable'] ? 'true' : 'false';
+		}
+		
+		if (
+			!empty($params['user'])
+			&& is_array($params['user'])
+			&& isset($params['user']['id'])
+			&& isset($params['user']['name'])
+		) {
+			$postParams['user'] = $params['user']['id'] . ',' . $params['user']['name'];
 		}
 		
 		if (!empty($params['filter'])) {
@@ -71,19 +68,23 @@ class CrocodocSession extends Crocodoc {
 		}
 		
 		if (isset($params['isAdmin'])) {
-			$params['admin'] = $params['isAdmin'] ? 1 : 0;
+			$postParams['admin'] = $params['isAdmin'] ? 'true' : 'false';
 		}
 		
 		if (isset($params['isDownloadable'])) {
-			$params['downloadable'] = $params['isDownloadable'] ? 1 : 0;
+			$postParams['downloadable'] = $params['isDownloadable'] ? 'true' : 'false';
 		}
 		
 		if (isset($params['isCopyprotected'])) {
-			$params['copyprotected'] = $params['isCopyprotected'] ? 1 : 0;
+			$postParams['copyprotected'] = $params['isCopyprotected'] ? 'true' : 'false';
 		}
 		
 		if (isset($params['isDemo'])) {
-			$params['demo'] = $params['isDemo'] ? 1 : 0;
+			$postParams['demo'] = $params['isDemo'] ? 'true' : 'false';
+		}
+		
+		if (isset($params['sidebar'])) {
+			$postParams['sidebar'] = $params['sidebar'];
 		}
 		
 		$session = static::_request('create', null, $postParams);
