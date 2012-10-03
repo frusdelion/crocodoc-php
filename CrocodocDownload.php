@@ -33,15 +33,15 @@ class CrocodocDownload extends Crocodoc {
 		$getParams = array(
 			'uuid' => $uuid,
 		);
-		if ($isPdf) $getParams['pdf'] = 1;
+		if ($isPdf) $getParams['pdf'] = 'true';
 
 		if ($isAnnotated) {
-			$getParams['annotated'] = 1;
-			
-			if (!empty($filter)) {
-				if (is_array($filter)) $filter = implode(',', $filter);
-				$getParams['filter'] = $filter;
-			}
+			$getParams['annotated'] = 'true';
+		}
+		
+		if ($filter) {
+			if (is_array($filter)) $filter = implode(',', $filter);
+			$getParams['filter'] = $filter;
 		}
 		
 		return static::_request('document', $getParams, null, false);
@@ -66,6 +66,7 @@ class CrocodocDownload extends Crocodoc {
 	 * Download a document's thumbnail from Crocodoc with an optional size.
 	 * 
 	 * @param string $uuid The uuid of the file to download the thumbnail from
+	 * TOTO replace size with width/height
 	 * @param string $size WIDTHxHEIGHT (integer X integer) - this param is
 	 *   polymorphic and can also be passed in as an array with width and
 	 *   height fields
@@ -79,14 +80,6 @@ class CrocodocDownload extends Crocodoc {
 		);
 		
 		if (!empty($width) && !empty($height)) {
-			if ($width < 1) {
-				return static::_error('invalid_width', __CLASS__, __FUNCTION__, $response);
-			}
-			
-			if ($height < 1) {
-				return static::_error('invalid_height', __CLASS__, __FUNCTION__, $response);
-			}
-			
 			$getParams['size'] = $width . 'x' . $height;
 		}
 
