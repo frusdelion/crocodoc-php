@@ -29,7 +29,7 @@ try {
 	echo '  UUID is ' . $uuid . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -56,7 +56,7 @@ try {
 	}
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -80,7 +80,7 @@ if (is_file($filePath)) {
 		echo '  UUID is ' . $uuid2 . "\n";
 	} catch (CrocodocException $e) {
 		echo 'failed :(' . "\n";
-		echo '  Error Code: ' . $e->getCode() . "\n";
+		echo '  Error Code: ' . $e->errorCode . "\n";
 		echo '  Error Message: ' . $e->getMessage() . "\n";
 	}
 } else {
@@ -114,7 +114,7 @@ try {
 			echo '  File #2 status is ' . $statuses[1]['status'] . '.' . "\n";
 			echo '  File #2 ' . ($statuses[1]['viewable'] ? 'is' : 'is not') . ' viewable.' . "\n";
 		} else {
-			echo '  File #1 failed :(' . "\n";
+			echo '  File #2 failed :(' . "\n";
 			echo '  Error Message: ' . $statuses[1]['error'] . "\n";
 		}
 	} else {
@@ -123,7 +123,7 @@ try {
 	}
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -166,7 +166,7 @@ try {
 	}
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -187,11 +187,10 @@ try {
 		echo '  File was deleted.' . "\n";
 	} else {
 		echo 'failed :(' . "\n";
-		echo '  Error Message: ' . $status['error'] . "\n";
 	}
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -206,14 +205,15 @@ echo '  Downloading... ';
 
 try {
 	$file = CrocodocDownload::document($uuid2);
-	$filename = dirname(__FILE__) . '/example-files/test.pdf';
+	$filename = dirname(__FILE__) . '/example-files/test-original.pdf';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
+	fclose($fileHandle);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -231,11 +231,12 @@ try {
 	$filename = dirname(__FILE__) . '/example-files/test.pdf';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
+	fclose($fileHandle);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -253,11 +254,12 @@ try {
 	$filename = dirname(__FILE__) . '/example-files/test-with-options.pdf';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
+	fclose($fileHandle);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -275,11 +277,12 @@ try {
 	$filename = dirname(__FILE__) . '/example-files/thumbnail.png';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
+	fclose($fileHandle);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -297,11 +300,12 @@ try {
 	$filename = dirname(__FILE__) . '/example-files/thumbnail-large.png';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
+	fclose($fileHandle);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -319,11 +323,12 @@ try {
 	$filename = dirname(__FILE__) . '/example-files/text.txt';
 	$fileHandle = fopen($filename, 'w+');
 	fwrite($fileHandle, $file);
+	fclose($fileHandle);
 	echo 'success :)' . "\n";
 	echo '  File was downloaded to ' . $filename . '.' . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -344,7 +349,7 @@ try {
 	echo '  The session key is ' . $sessionKey . '.' . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -371,12 +376,13 @@ try {
 		'isDownloadable' => true,
 		'isCopyprotected' => false,
 		'isDemo' => false,
+		'sidebar' => 'visible',
 	));
 	echo 'success :)' . "\n";
 	echo '  The session key is ' . $sessionKey . '.' . "\n";
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
 
@@ -397,10 +403,9 @@ try {
 		echo '  File was deleted.' . "\n";
 	} else {
 		echo 'failed :(' . "\n";
-		echo '  Error Message: ' . $status['error'] . "\n";
 	}
 } catch (CrocodocException $e) {
 	echo 'failed :(' . "\n";
-	echo '  Error Code: ' . $e->getCode() . "\n";
+	echo '  Error Code: ' . $e->errorCode . "\n";
 	echo '  Error Message: ' . $e->getMessage() . "\n";
 }
