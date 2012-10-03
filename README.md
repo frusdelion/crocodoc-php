@@ -29,8 +29,8 @@ To download:
 
 Require the library into any of your PHP files:
 
-	require_once /path/to/crocodoc-php/Crocodoc.php
-	
+    require_once /path/to/crocodoc-php/Crocodoc.php
+    
 ## Getting Started
 
 You can see a number of examples on how to use this library in examples.php.
@@ -47,9 +47,11 @@ Save the file, make sure the example-files directory is writeable, and then run 
 You should see 15 examples run with output in your terminal.
 You can inspect the examples.php code to see each API call being used.
 
-To start using crocodoc-php in your code, instantiate the Crocodoc API library:
+To start using crocodoc-php in your code, set your API token:
 
     Crocodoc::setApiToken('YOUR_API_TOKEN');
+    
+And now you can start using the methods in CrocodocDocument, CrocodocDownload, CrocodocSession.
 
 Read on to find out more how to use crocodoc-php.
 You can also find more detailed information about our API here:
@@ -77,7 +79,7 @@ To upload a document, use CrocodocDocument::upload().
 Pass in a url (as a string) or a file resource object.
 This function returns a UUID of the file.
 
-	// with a url
+    // with a url
     $uuid = CrocodocDocument::upload($url);
     
     // with a file
@@ -164,27 +166,29 @@ https://crocodoc.com/docs/api/#session-create
 To get a session key, use CrocodocSession::create().
 Pass in the uuid and optionally a params associative array.
 The params array can contain an "isEditable" boolean,
-a "userInfo" associative array with "id" and "name" fields,
+a "user" associative array with "id" and "name" fields,
+a "filter" string, a "sidebar" string,
 and booleans for "isAdmin", "isDownloadable", "isCopyprotected", and "isDemo".
 This function returns a session key.
 
-	// without optional params
+    // without optional params
     $sessionKey = CrocodocSession::create($uuid);
     
     // with optional params
-	$sessionKey = CrocodocSession::create($uuid, array(
-		'isEditable' => true,
-		'user' => array(
-			'id' => 1,
-			'name' => 'John Crocodile',
-		),
-		'filter' => 'all',
-		'isAdmin' => true,
-		'isDownloadable' => true,
-		'isCopyprotected' => false,
-		'isDemo' => false,
-	));
-	
+    $sessionKey = CrocodocSession::create($uuid, array(
+        'isEditable' => true,
+        'user' => array(
+            'id' => 1,
+            'name' => 'John Crocodile',
+        ),
+        'filter' => 'all',
+        'isAdmin' => true,
+        'isDownloadable' => true,
+        'isCopyprotected' => false,
+        'isDemo' => false,
+        'sidebar' => 'visible'
+    ));
+    
 ## Support
 
 Please use github's issue tracker for API library support.
