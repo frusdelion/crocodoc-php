@@ -66,7 +66,8 @@ class CrocodocDownload extends Crocodoc {
 	 * Download a document's thumbnail from Crocodoc with an optional size.
 	 * 
 	 * @param string $uuid The uuid of the file to download the thumbnail from
-	 * TOTO replace size with width/height
+	 * @param int $width The width you want the thumbnail to be
+	 * @param int $height The height you want the thumbnail to be
 	 * @param string $size WIDTHxHEIGHT (integer X integer) - this param is
 	 *   polymorphic and can also be passed in as an array with width and
 	 *   height fields
