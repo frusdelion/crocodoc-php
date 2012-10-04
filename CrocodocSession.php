@@ -37,6 +37,7 @@ class CrocodocSession extends Crocodoc {
 	 *   bool 'isDownloadable' Can users download the original document?
 	 *   bool 'isCopyprotected' Can text be selected in the document?
 	 *   bool 'isDemo' Should we prevent any changes from being persisted?
+	 *   string 'sidebar' Sets if and how the viewer sidebar is included
 	 * 
 	 * @return string A unique session key for the document
 	 * @throws CrocodocException
