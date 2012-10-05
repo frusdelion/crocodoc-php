@@ -48,16 +48,7 @@ class CrocodocDocument extends Crocodoc {
 			'uuids' => implode(',', $uuids),
 		);
 		$response = static::_request('status', $getParams, null);
-		
-		if ($isSingleUuid) {
-			if (empty($response[0]['uuid'])) {
-				return self::_error('missing_uuid', __CLASS__, __FUNCTION__, $response);
-			}
-			
-			return $response[0];
-		}
-		
-		return $response;
+		return $isSingleUuid ? $response[0] : $response;
 	}
 	
 	/**
@@ -76,13 +67,13 @@ class CrocodocDocument extends Crocodoc {
 		} elseif (is_resource($urlOrFile)) {
 			$postParams['file'] = $urlOrFile;
 		} else {
-			return self::_error('invalid_url_or_file_param', __CLASS__, __FUNCTION__, null);
+			return static::_error('invalid_url_or_file_param', __CLASS__, __FUNCTION__, null);
 		}
 		
 		$response = static::_request('upload', null, $postParams);
 
 		if (empty($response['uuid'])) {
-			return self::_error('missing_uuid', __CLASS__, __FUNCTION__, $response);
+			return static::_error('missing_uuid', __CLASS__, __FUNCTION__, $response);
 		}
 		
 		return $response['uuid'];
