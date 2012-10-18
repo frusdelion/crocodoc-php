@@ -102,15 +102,15 @@ class Crocodoc {
 	 * 
 	 * @param string $method This is just an addition to the path, for example,
 	 *   in "/documents/upload" the method would be "upload"
-	 * @param array $getParams An array of GET params to be added to the URL -
-	 *   this can also be a string
-	 * @param array $postParams An array of GET params to be added to the URL -
-	 *   this can also be a string
+	 * @param array|string $getParams An array of GET params to be added to the
+	 *   URL - this can also be a string
+	 * @param array|string $postParams An array of GET params to be added to
+	 *   the URL - this can also be a string
 	 * @param bool isJson Should the file be converted from JSON? Defaults to
 	 *   true.
 	 * 
-	 * @return array The response array is usually converted from JSON, but
-	 *   sometimes we just return the raw response from the server
+	 * @return array|string The response array is usually converted from JSON,
+	 *   but sometimes we just return the raw response from the server
 	 * @throws CrocodocException
 	 */
 	protected static function _request($method, $getParams, $postParams, $isJson = true) {
