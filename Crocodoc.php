@@ -100,8 +100,6 @@ class Crocodoc {
 	 * Make an HTTP request. Some of the params are polymorphic - getParams and
 	 * postParams. 
 	 * 
-	 * @param string $path The path on the server to make the request to
-	 *   relative to the base path
 	 * @param string $method This is just an addition to the path, for example,
 	 *   in "/documents/upload" the method would be "upload"
 	 * @param array $getParams An array of GET params to be added to the URL -

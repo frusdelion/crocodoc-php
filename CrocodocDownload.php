@@ -22,8 +22,8 @@ class CrocodocDownload extends Crocodoc {
 	 * @param string $uuid The uuid of the file to download
 	 * @param bool $isPdf Should the file be downloaded as a PDF?
 	 * @param bool $isAnnotated Should the file be downloaded with annotations?
-	 * @param string $filter Which annotations should be included if any - this
-	 *   is usually a string, but could also be an array if it's a
+	 * @param string|string[] $filter Which annotations should be included if
+	 *   any - this is usually a string, but could also be an array if it's a
 	 *   comma-separated list of user IDs as the filter
 	 * 
 	 * @return string The downloaded file contents as a string
@@ -34,10 +34,7 @@ class CrocodocDownload extends Crocodoc {
 			'uuid' => $uuid,
 		);
 		if ($isPdf) $getParams['pdf'] = 'true';
-
-		if ($isAnnotated) {
-			$getParams['annotated'] = 'true';
-		}
+		if ($isAnnotated) $getParams['annotated'] = 'true';
 		
 		if ($filter) {
 			if (is_array($filter)) $filter = implode(',', $filter);
@@ -68,9 +65,6 @@ class CrocodocDownload extends Crocodoc {
 	 * @param string $uuid The uuid of the file to download the thumbnail from
 	 * @param int $width The width you want the thumbnail to be
 	 * @param int $height The height you want the thumbnail to be
-	 * @param string $size WIDTHxHEIGHT (integer X integer) - this param is
-	 *   polymorphic and can also be passed in as an array with width and
-	 *   height fields
 	 * 
 	 * @return string The downloaded thumbnail contents
 	 * @throws CrocodocException
