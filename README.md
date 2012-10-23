@@ -2,7 +2,7 @@
 
 ## Introduction
 
-crocodoc-php is a PHP Wrapper for the Crocodoc API.
+crocodoc-php is a PHP wrapper for the Crocodoc API.
 The Crocodoc API lets you upload documents and then generate secure and customized viewing sessions for them.
 Our API is based on REST principles and generally returns JSON encoded responses,
 and in PHP are converted to associative arrays unless otherwise noted.
@@ -83,7 +83,7 @@ This function returns a UUID of the file.
     $uuid = CrocodocDocument::upload($url);
     
     // with a file
-    $fileHandle = fopen($filePath, 'r+');
+    $fileHandle = fopen($filePath, 'r');
     $uuid = CrocodocDocument::upload($fileHandle);
     
 #### Status

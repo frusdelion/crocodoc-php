@@ -40,7 +40,6 @@ try {
  */
 echo "\n";
 echo 'Example #2 - Check the status of the file we just uploaded.' . "\n";
-
 echo '  Checking status... ';
 
 try {
@@ -63,14 +62,15 @@ try {
 /*
  * Example #3
  * 
- * Upload another file to Crocodoc. We're uploading Crocodoc's logo as a file.
+ * Upload another file to Crocodoc. We're uploading Form W4 from the IRS as a PDF.
  */
 echo "\n";
 echo 'Example #3 - Upload a sample .pdf as a file.' . "\n";
+$uuid2 = null;
 $filePath = dirname(__FILE__) . '/example-files/form-w4.pdf';
 
 if (is_file($filePath)) {	
-	$fileHandle = fopen($filePath, 'r+');
+	$fileHandle = fopen($filePath, 'r');
 	echo '  Uploading... ';
 	$uuid2 = null;
 	
@@ -206,7 +206,7 @@ echo '  Downloading... ';
 try {
 	$file = CrocodocDownload::document($uuid2);
 	$filename = dirname(__FILE__) . '/example-files/test-original.pdf';
-	$fileHandle = fopen($filename, 'w+');
+	$fileHandle = fopen($filename, 'w');
 	fwrite($fileHandle, $file);
 	fclose($fileHandle);
 	echo 'success :)' . "\n";
@@ -229,7 +229,7 @@ echo '  Downloading... ';
 try {
 	$file = CrocodocDownload::document($uuid2, true);
 	$filename = dirname(__FILE__) . '/example-files/test.pdf';
-	$fileHandle = fopen($filename, 'w+');
+	$fileHandle = fopen($filename, 'w');
 	fwrite($fileHandle, $file);
 	fclose($fileHandle);
 	echo 'success :)' . "\n";
@@ -252,7 +252,7 @@ echo '  Downloading... ';
 try {
 	$file = CrocodocDownload::document($uuid2, true, true, 'all');
 	$filename = dirname(__FILE__) . '/example-files/test-with-options.pdf';
-	$fileHandle = fopen($filename, 'w+');
+	$fileHandle = fopen($filename, 'w');
 	fwrite($fileHandle, $file);
 	fclose($fileHandle);
 	echo 'success :)' . "\n";
@@ -266,7 +266,7 @@ try {
 /*
  * Example #10
  * 
- * Download the file we uploaded from Example #3 with as a default thumbnail
+ * Download the file we uploaded from Example #3 as a default thumbnail
  */
 echo "\n";
 echo 'Example #10 - Download a default thumbnail from a file.' . "\n";
@@ -275,7 +275,7 @@ echo '  Downloading... ';
 try {
 	$file = CrocodocDownload::thumbnail($uuid2);
 	$filename = dirname(__FILE__) . '/example-files/thumbnail.png';
-	$fileHandle = fopen($filename, 'w+');
+	$fileHandle = fopen($filename, 'w');
 	fwrite($fileHandle, $file);
 	fclose($fileHandle);
 	echo 'success :)' . "\n";
@@ -289,7 +289,7 @@ try {
 /*
  * Example #11
  * 
- * Download the file we uploaded from Example #3 with as a large thumbnail
+ * Download the file we uploaded from Example #3 as a large thumbnail
  */
 echo "\n";
 echo 'Example #11 - Download a large thumbnail from a file.' . "\n";
@@ -298,7 +298,7 @@ echo '  Downloading... ';
 try {
 	$file = CrocodocDownload::thumbnail($uuid2, 250, 250);
 	$filename = dirname(__FILE__) . '/example-files/thumbnail-large.png';
-	$fileHandle = fopen($filename, 'w+');
+	$fileHandle = fopen($filename, 'w');
 	fwrite($fileHandle, $file);
 	fclose($fileHandle);
 	echo 'success :)' . "\n";
@@ -321,7 +321,7 @@ echo '  Downloading... ';
 try {
 	$file = CrocodocDownload::text($uuid2);
 	$filename = dirname(__FILE__) . '/example-files/text.txt';
-	$fileHandle = fopen($filename, 'w+');
+	$fileHandle = fopen($filename, 'w');
 	fwrite($fileHandle, $file);
 	fclose($fileHandle);
 	echo 'success :)' . "\n";
