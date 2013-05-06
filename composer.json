@@ -16,5 +16,9 @@
   "require": {
     "php": ">=5.3",
     "ext-curl": "*"
+  },
+  "type": "library",
+  "autoload": {
+    "classmap": ["Crocodoc.php"]
   }
 }
