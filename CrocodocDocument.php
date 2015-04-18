@@ -66,7 +66,7 @@ class CrocodocDocument extends Crocodoc {
 		if (is_string($urlOrFile)) {
 			$postParams['url'] = $urlOrFile;
 		} elseif (is_resource($urlOrFile)) {
-			$postParams['file'] = $urlOrFile;
+			$postParams['file'] = new CURLFile(realpath(stream_get_meta_data($urlOrFile)['uri']));
 		} else {
 			return static::_error('invalid_url_or_file_param', __CLASS__, __FUNCTION__, null);
 		}
